@@ -261,7 +261,7 @@ GET /funcionarios/salario/{salario}
 | ----------------- |
 | Giovanna Mendes   |
 | Bianca Casagrande |
-| Jonhatan de Jesus |
+| Jhonatan Oliveira |
 | Dayane Santana    |
 | Isabella Rodrigues|
 | Rafael Scherer    |
