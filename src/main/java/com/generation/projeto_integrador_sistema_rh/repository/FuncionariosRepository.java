@@ -1,9 +1,15 @@
 package com.generation.projeto_integrador_sistema_rh.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+//Importações necessárias
 
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 import com.generation.projeto_integrador_sistema_rh.model.Funcionarios;
 
-public interface FuncionariosRepository extends JpaRepository<Funcionarios, Long>{
+// Repository responsável pelo acesso ao banco
+public interface FuncionariosRepository extends JpaRepository<Funcionarios, Long> {
+
+	// Busca funcionários com salário maior que o valor informado
+	public List<Funcionarios> findBySalarioGreaterThan(float salario);
 
 }

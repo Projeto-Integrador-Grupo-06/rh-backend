@@ -25,6 +25,9 @@ public class Funcionarios {
 	
 	private float salario;
 	
+	
+	@NotBlank(message = "O atributo Setor é obrigatório!")
+    @Size(min = 5, max = 100, message = "O atributo setor deve conter no mínimo 05 e no máximo 100 caracteres.")
 	private String setor;
 
 	public Long getId() {
