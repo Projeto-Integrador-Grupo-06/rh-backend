@@ -276,4 +276,4 @@ Projeto desenvolvido para fins educacionais durante o bootcamp da Generation Bra
 
 # 🔗 Repositório
 
-[Projeto Integrador Grupo 06](https://github.com/Projeto-Integrador-Grupo-06?utm_source=chatgpt.com)
+[Projeto Integrador Grupo 06](https://github.com/Projeto-Integrador-Grupo-06/rh-backend/tree/main)
