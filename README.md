@@ -1,7 +1,7 @@
 # 👨‍💼 Sistema de Cadastro de RH
 
 <p align="center">
-  <img src="assets/image.png" width="400">
+  <img src="https://i.pinimg.com/736x/ff/b8/7e/ffb87e3108268bcfcb220962e424eb6d.jpg" width="500">
 </p>
 
 ---
