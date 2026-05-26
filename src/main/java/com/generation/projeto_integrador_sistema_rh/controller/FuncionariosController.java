@@ -24,128 +24,92 @@ import com.generation.projeto_integrador_sistema_rh.repository.FuncionariosRepos
 
 import jakarta.validation.Valid;
 
-// Define que esta classe será um Controller REST
-@RestController
 
-// Define a rota principal da API
-@RequestMapping("/funcionarios")
-
-// Permite acesso de qualquer origem (frontend)
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RestController   // Define que esta classe será um Controller REST
+@RequestMapping("/funcionarios")   // Define a rota principal da API
+@CrossOrigin(origins = "*", allowedHeaders = "*")   // Permite acesso de qualquer origem (frontend)
 public class FuncionariosController {
 
-    // Injeta automaticamente o Repository
-    @Autowired
-    private FuncionariosRepository funcionariosRepository;
+	
+	@Autowired	// Injeta automaticamente o Repository
+	private FuncionariosRepository funcionariosRepository;
 
-    
-    // LISTAR TODOS FUNCIONÁRIOS
-    
-    // Método GET
-    // Endpoint: GET /funcionarios
-    @GetMapping
-    public ResponseEntity<List<Funcionarios>> getAll() {
-        
-        // Busca todos os funcionários no banco
-        return ResponseEntity.ok(funcionariosRepository.findAll());
-    }
+	// LISTAR TODOS FUNCIONÁRIOS
+	@GetMapping 	// Endpoint: GET /funcionarios	// Método GET
+	public ResponseEntity<List<Funcionarios>> getAll() {
 
-    
-    // BUSCAR FUNCIONÁRIO POR ID
-    
-    // Endpoint: GET /funcionarios/{id}
-    @GetMapping("/{id}")
-    public ResponseEntity<Funcionarios> getById(@PathVariable Long id) {
-        
-        // Busca funcionário pelo ID
-        return funcionariosRepository.findById(id)
-                
-                // Se encontrar retorna 200 OK
-                .map(resposta -> ResponseEntity.ok(resposta))
-                
-                // Se não encontrar retorna 404 NOT FOUND
-                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-    }
+		// Busca todos os funcionários no banco
+		return ResponseEntity.ok(funcionariosRepository.findAll());
+	}
 
-    
-    // BUSCAR FUNCIONÁRIOS COM SALÁRIO MAIOR QUE
-    
-    // Endpoint:
-    // GET /funcionarios/salario/1518
-    
-    @GetMapping("/salario/{salario}")
-    public ResponseEntity<List<Funcionarios>> getBySalario(
-            @PathVariable float salario){
+	// BUSCAR FUNCIONÁRIO POR ID
+	@GetMapping("/{id}")	// Endpoint: GET /funcionarios/{id}
+	public ResponseEntity<Funcionarios> getById(@PathVariable Long id) {
 
-        // Busca funcionários com salário maior que o valor informado
-        return ResponseEntity.ok(
-                funcionariosRepository.findBySalarioGreaterThan(salario));
-    }
+		// Busca funcionário pelo ID
+		return funcionariosRepository.findById(id)
 
-    
-    // CADASTRAR FUNCIONÁRIO
-    
-    // Endpoint:
-    // POST /funcionarios
-    
-    @PostMapping
-    public ResponseEntity<Funcionarios> post(
-            
-            // @Valid ativa as validações do Model
-            @Valid
-            
-            // Recebe os dados enviados no body da requisição
-            @RequestBody Funcionarios funcionario) {
+				// Se encontrar retorna 200 OK
+				.map(resposta -> ResponseEntity.ok(resposta))
 
-        // Garante que será criado um novo registro
-        funcionario.setId(null);
+				// Se não encontrar retorna 404 NOT FOUND
+				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+	}
 
-        // Salva no banco e retorna status 201 CREATED
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(funcionariosRepository.save(funcionario));
-    }
+	// BUSCAR FUNCIONÁRIOS COM SALÁRIO MAIOR QUE
 
-    
-    // ATUALIZAR FUNCIONÁRIO
-    
-    // Endpoint:
-    // PUT /funcionarios
-    
-    @PutMapping
-    public ResponseEntity<Funcionarios> put(
-            @Valid @RequestBody Funcionarios funcionario) {
+	// Endpoint:
+	// GET /funcionarios/salario/1518
 
-        // Verifica se o funcionário existe
-        return funcionariosRepository.findById(funcionario.getId())
-                
-                // Se existir atualiza os dados
-                .map(resposta -> ResponseEntity.status(HttpStatus.OK)
-                        .body(funcionariosRepository.save(funcionario)))
-                
-                // Se não existir retorna 404
-                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-    }
+	@GetMapping("/salario/{salario}")
+	public ResponseEntity<List<Funcionarios>> getBySalario(@PathVariable float salario) {
 
-    
-    // DELETAR FUNCIONÁRIO
-    
-    // Endpoint:
-    // DELETE /funcionarios/{id}
-    
-    // Retorna status 204 NO CONTENT
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+		// Busca funcionários com salário maior que o valor informado
+		return ResponseEntity.ok(funcionariosRepository.findBySalarioGreaterThan(salario));
+	}
 
-        // Busca funcionário pelo ID
-        Optional<Funcionarios> funcionario =
-                funcionariosRepository.findById(id);
+	// CADASTRAR FUNCIONÁRIO
+	@PostMapping	// Endpoint: // POST /funcionarios
+	public ResponseEntity<Funcionarios> post(
 
-        // Se não existir lança erro 404
-        if (funcionario.isEmpty())
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+			// @Valid ativa as validações do Model
+			@Valid @RequestBody Funcionarios funcionario) { // Recebe os dados enviados no body da requisição
 
-        // Deleta funcionário do banco
-        funcionariosRepository.deleteById(id);
-    }
+		// Garante que será criado um novo registro
+		funcionario.setId(null);
+
+		// Salva no banco e retorna status 201 CREATED
+		return ResponseEntity.status(HttpStatus.CREATED).body(funcionariosRepository.save(funcionario));
+	}
+
+	// ATUALIZAR FUNCIONÁRIO
+	@PutMapping 	// Endpoint: // PUT /funcionarios
+	public ResponseEntity<Funcionarios> put(@Valid @RequestBody Funcionarios funcionario) {
+
+		// Verifica se o funcionário existe
+		return funcionariosRepository.findById(funcionario.getId())
+
+				// Se existir atualiza os dados
+				.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(funcionariosRepository.save(funcionario)))
+
+				// Se não existir retorna 404
+				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+	}
+
+	// DELETAR FUNCIONÁRIO
+	// Endpoint:	// DELETE /funcionarios/{id}	// Retorna status 204 NO CONTENT
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@DeleteMapping("/{id}")
+	public void delete(@PathVariable Long id) {
+
+		// Busca funcionário pelo ID
+		Optional<Funcionarios> funcionario = funcionariosRepository.findById(id);
+
+		// Se não existir lança erro 404
+		if (funcionario.isEmpty())
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+
+		// Deleta funcionário do banco
+		funcionariosRepository.deleteById(id);
+	}
 }

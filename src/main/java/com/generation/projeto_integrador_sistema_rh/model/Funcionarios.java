@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "tb_funcionarios")
+@Table(name = "tb_funcionarios")  //cria tabela tb_funcionarios
 public class Funcionarios {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,11 +21,11 @@ public class Funcionarios {
 	
 	@NotBlank(message = "O atributo Função é obrigatório!")
 	@Size(min = 5, max = 100, message = "O atributo função deve conter no mínimo 05 e no máximo 100 caracteres.")
+	
 	private String funcao;
 	
 	private float salario;
-	
-	
+		
 	@NotBlank(message = "O atributo Setor é obrigatório!")
     @Size(min = 5, max = 100, message = "O atributo setor deve conter no mínimo 05 e no máximo 100 caracteres.")
 	private String setor;
