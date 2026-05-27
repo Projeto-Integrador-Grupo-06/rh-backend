@@ -61,7 +61,6 @@ O sistema permite:
 
 * CRUD completo de Funcionários
 * Busca de funcionário por ID
-* Busca por função
 * Busca por salário maior que o informado
 * Integração com banco MySQL
 * API REST
