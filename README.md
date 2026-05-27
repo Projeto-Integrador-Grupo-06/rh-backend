@@ -274,6 +274,13 @@ Projeto desenvolvido para fins educacionais durante o bootcamp da Generation Bra
 
 ---
 
+# 📄 Documentação
+
+A documentação completa do projeto pode ser acessada através do link abaixo.
+
+## 📥 Acessar Documentação
+[📘 Visualizar Documentação](https://docs.google.com/document/d/e/2PACX-1vRmLijSaTMkfJUNjehFRs08_x_rNMRU1Xnz0wj_v6sXRXI896-ET1RVcgUsCOKHMGgBatZPXqXIPnX_/pub)
+
 # 🔗 Repositório
 
 [Projeto Integrador Grupo 06](https://github.com/Projeto-Integrador-Grupo-06/rh-backend/tree/main)
